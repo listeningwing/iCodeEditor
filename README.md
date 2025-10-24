@@ -10,6 +10,7 @@ Fav Features
 * Parallelly edit file with diff operation.
 * Directly run Ruby and Lua code within the editor.
 * Fast indexing all kinds of source code file and documents for fast jumping.
+* Supports almost all common programming languages and document formats syntax highlighting.
 * Index tokens across different programming languages for fast typing and jumping.
 * High performance searching with Perl regular expression and powerful file filters.
 * Fast switch between multiple searched results.
@@ -22,11 +23,11 @@ Fav Features
 * Inspect unicode codepoint and UTF-8 sequences of a single character.
 * Show invisible characters and efficiently edit them.
 * Write markdown document and live preview instantly.
-....
+* ....
 
 
-mruby supports 3.4.0.
-Lua supports 5.4.x.
+mruby supports 3.4.0.<br>
+Lua supports 5.4.x.<br>
 
 
 More than just a code editor, but also a file manager, universal document viewer and multimedia player. In fact, emphasise the app is also a highly efficient file manager is never too much. Since 2012, the app was originally developed as a code editor for iPad for code review, and later, iPhone also supported, while reading code and viewing files on an iPhone is certainly convenient and useful, but editing text file on iPad is even better. Today's iCodeEditor is almost brand new after years of continuous development, reliable, small and fast. Large software is considered harmful, this small code editor also follows the design philosophy, making software as small as possible, pursue terseness and performance.

@@ -1,0 +1,6 @@
+{
+  "CMake": ["cmakelists.txt"],
+  "Ruby":  ["rakefile", "meson.build"],
+  "Makefile":["makefile.in", "makefile", "gnumakefile"],
+  "Ant": ["build.xml"]
+}

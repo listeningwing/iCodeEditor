@@ -1,0 +1,23 @@
+{
+  "Shell": ["/bin/sh", "/bin/bash", "/bin/zsh"],
+  "Ruby":  ["/usr/local/bin/ruby", "/usr/bin/env ruby"],
+  "Python":["/usr/local/bin/python", "/usr/bin/python3"],
+  "Perl": "/usr/bin/perl",
+  "Awk": ["/usr/bin/awk", "/usr/bin/env gawk"],
+  "Lua": "/usr/local/bin/lua",
+  "PHP": "/usr/local/bin/php",
+  "Tcl": "/usr/local/bin/tcl",
+  "Makefile": "/usr/bin/make",
+  "CMake": "/usr/local/bin/cmake",
+  "Java": "/usr/local/bin/java",
+  "Go": "/usr/local/go/bin/go",
+  "Dart": "/usr/bin/env dart",
+  "Rust": "/usr/local/bin/rustrun",
+  "OCaml": "~/.opam/default/bin/utop",
+  "Haskell": "~/Haskell/ghc-8.10.7/bin/runhaskell",
+  "Erlang": "/usr/bin/env escript",
+  "Elixir": "/usr/bin/env elixir"
+}
+
+
+

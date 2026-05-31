@@ -8,6 +8,7 @@ Enjoy edit code with an ultra small code editor.<br><br>
 Fav Features
 ==================
 * Parallelly edit file with diff operation.
+* Record live log from remote device or server for fast inspect and fix runtime issues.
 * Directly run Ruby and Lua code within the editor.
 * Fast indexing all kinds of source code file and documents for fast jumping.
 * Supports almost all common programming languages and document formats syntax highlighting.

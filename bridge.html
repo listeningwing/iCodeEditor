@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iCodeEditor MCP Client Demo</title>
+<style type="text/css">
+body { margin: 1em auto; padding: 0 1em;}
+html, body, button, input, select, textarea { font-family: sans-serif; font-size: 14px; color: #b2b2b2;}
+h1, h2, h3, strong, b { font-weight: 600; color: #7f7f7f;}
+a:link { color: #827f00; }
+a:visited { color: #827f00; }
+a:hover { text-decoration: none; }
+t {padding-left: 20px;}
+button {border: 1px #7f7f7f;}
+textarea { width: 100%; max-width: 500px; height: 150px; font-family: monospace; background: #c2c2c2; color: #7f7f7f;}
+td { width: 100px; font-weight: bold; padding-top: 10px; }
+p, li { max-width: 714px; }
+td.icon { width: auto; }
+.button { width: 24px; height: 20pt;}
+</style>
+<script type="text/javascript" src="bridge.js"></script>
+<script type="text/javascript">
+    var accesscode = "***";
+    function appendLiveData(newData) {
+      const textarea = document.getElementById('dataLog');
+      textarea.value += newData;
+      textarea.scrollTop = textarea.scrollHeight;
+    };
+    
+    function decodeBase64Unicode(base64String) {
+        var binaryString = base64String;
+        try {
+          binaryString = atob(base64String);
+          const bytes = Uint8Array.from(binaryString, (char) => char.charCodeAt(0));
+          return new TextDecoder().decode(bytes);
+        } catch (e) { //The string contains invalid characters.
+            //console.error("decodeBase64Unicode:", e);
+        }
+        return binaryString;
+    };
+
+    //a. call iCodeEditor without waiting
+    function requestNoWaiting(req) {
+         window.webkit.messageHandlers.nativeHandler.postMessage(req);
+    };
+    
+    //b. call iCodeEditor and return an object
+    async function requestWaitingData(req) {
+		try {
+			const string = await window.webkit.messageHandlers.fetchDataHandler.postMessage(req);
+			//appendLiveData(string);
+			var obj = JSON.parse(string);
+			console.log("Object from iCodeEditor:", obj);
+			console.log("msgtype from iCodeEditor:", obj.msgtype);
+		} catch (e) {
+			console.error("fetchDataHandler threw an error:", e);
+		}
+        return obj;
+    };
+     
+
+    // How to demonstrate:
+    // 1. Open a source code file in text editor.
+    // 2. Select "Open File in Browser" in operation list, load this page in the
+    //    embedded Web browser of iCodeEditor, programmatically edit text blocks
+    //    of source code files side by side with AI code assistant, modify this file
+    //    and mcp client (js files) to communicate with AI assistant.
+    // 3. Debug mcp client (optional): open Safari Web Inspector to view
+    //    "console.log()" or directly append messages in the page, more API definitions,
+    //    please refer the resource file "bridge.js".
+    function calliCodeEditor() {
+          /*var string = makeRequst('openURL', 'https://saynoto.ai', '');
+            var req = JSON.parse(string);
+            requestNoWaiting(req);
+          */
+
+          // a. ***, placeholder, data length can't be 0
+          // b. current selection encoded with base64
+          // fetch path of current file, cursor location, and current selection
+          var string = makeRequst('currentFileInfo', '***', '');
+          var req = JSON.parse(string);
+          const obj = requestWaitingData(req);
+          var selection = decodeBase64Unicode(obj.selection);
+          console.log("selection:", selection);
+          appendLiveData(selection);
+
+          //parameter: 2 => insert text block at current cursor position.
+          //const testString = "everything you can do from a terminal, you can do in iCodeEditor.";
+          //let string = makeRequst('textOperation', testString, '2');
+          //var req = JSON.parse(string);
+          //requestNoWaiting(req);
+          
+          addTokenIndex();
+            
+     };
+     
+</script>
+</head>
+<body>
+<br><br><br><br>
+<br><br><br><br>
+<textarea id="dataLog"></textarea>
+<br><br><br><br>
+<button onclick="calliCodeEditor();">click me to call native api</button>
+<br><br><br><br>
+<br><br><br><br>
+</body>
+</html>
+
+
